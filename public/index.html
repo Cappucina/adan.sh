@@ -8,15 +8,28 @@
 
     <title>ADAN Programming Language</title>
 
-    <link rel="stylesheet" href="elements.css">
-    <link rel="stylesheet" href="classes.css">
+    <link rel="stylesheet" href="./styles/elements.css">
+    <link rel="stylesheet" href="./styles/classes.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    
     <link rel="icon" href="../assets/logo.png">
-
+    
     <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- nav bar -->
+    <div>
+        <nav class="navbar">
+            <a class="stack-sans-notch" href="https://install.adan.sh/" target="_blank">Install</a>
+            <a class="stack-sans-notch" href="https://docs.adan.sh/" target="_blank">Documentation</a>
+            <a class="stack-sans-notch" href="https://github.com/Cappucina/ADAN.git" target="_blank">Source</a>
+        </nav>
+    </div>
+
+    <!-- hero thing -->
     <div class="hero">
         <img src="../assets/logo.png" alt="ADAN Logo" class="hero-logo">
         <div class="hero-text">
@@ -25,6 +38,26 @@
                 JavaScript<br>and used like C for low-level programming.</p>
         </div>
     </div>
+
+    <!-- code sample preview -->
+    <section class="code-sample">
+        <div class="code-inner">
+            <div class="code-left">
+                <h2 class="stack-sans-notch">Preview</h2>
+                <p class="stack-sans-notch code-desc">Write legible and easily modifiable code without the hassle of
+                    worrying about memory management.</p>
+
+                <button class="stack-sans-notch"><a href="https://playground.adan.sh/" target="_blank">Open Playground</a></button>
+            </div>
+
+            <div class="code-right">
+                <pre><code class="language-javascript"></code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- post-load scripts -->
+    <script src="./scripts/read.js"></script>
 </body>
 
 </html>

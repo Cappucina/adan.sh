@@ -1,0 +1,134 @@
+.stack-sans-notch {
+    font-family: 'Stack Sans Notch', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.hero-logo {
+    width: 180px;
+    height: 180px;
+    flex: 0 0 auto;
+}
+
+.hero-text {
+    text-align: left;
+}
+
+.hero-text h1 {
+    font-size: 90px;
+    margin: 0;
+    line-height: 1;
+}
+
+.subdomain {
+    opacity: 0.25;
+    font-size: 0.55em;
+    position: relative;
+    color: rgb(120, 120, 120);
+    margin-left: 6px;
+}
+
+.subtitle {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 720px) {
+    .hero {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 48px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .subdomain {
+        top: 0;
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: left;
+    gap: 40px;
+    padding: 30px 80px;
+    border-bottom: #383838 1px solid;
+}
+
+.code-sample {
+    max-width: 1100px;
+    margin: 40px auto 80px;
+    padding: 20px;
+}
+
+.code-inner {
+    background: #2b2b2b;
+    border-radius: 8px;
+    border: #383838 1px solid;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.code-desc {
+    margin-top: 6px;
+    margin-bottom: 16px;
+    color: rgb(180,180,180);
+}
+
+.code-left {
+    margin-left: 10px;
+    flex: 0 0 40%;
+    min-width: 240px;
+}
+
+.code-right {
+    margin-left: -15px;
+    flex: 1 1 60%;
+}
+
+pre[class*="language-"] {
+    margin: 0;
+    overflow: auto;
+    border-radius: 6px;
+}
+
+@media (max-width: 720px) {
+    .code-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .code-left {
+        flex-basis: auto;
+    }
+
+    .code-right {
+        width: 100%;
+    }
+}
+
+.bf::before {
+    content: "» ";
+    margin-right: 4px;
+    opacity: 0.25;
+}
