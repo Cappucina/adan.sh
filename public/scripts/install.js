@@ -27,6 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const safeHtml = DOMPurify.sanitize(unsafeHtml);
         markdownRoot.innerHTML = safeHtml;
 
+        markdownRoot.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach((link) => {
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.classList.add("external-link");
+        });
+
         markdownRoot.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
             if (!heading.id) {
                 heading.id = slugify(heading.textContent);

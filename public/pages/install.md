@@ -1,4 +1,4 @@
-## Build the Compiler from Source
+## Build the Compiler from [Source](https://github.com/Cappucina/ADAN)
 
 > It's highly recommended to use a mainstream Linux distribution such as Ubuntu, Fedora, or Arch Linux when compiling the ADAN compiler yourself.
 
