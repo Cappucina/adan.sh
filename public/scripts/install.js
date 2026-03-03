@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const renderMarkdown = (markdownText) => {
         if (!window.marked || !window.DOMPurify) {
             markdownRoot.innerHTML = "<p>Markdown renderer is unavailable right now.</p>";
-            setTocMessage("Unable to load table of contents.");
             return;
         }
 
