@@ -178,6 +178,11 @@
 .install-doc pre[class*="language-"] {
     margin: 0;
     border: #383838 1px solid;
+    padding: 12px 14px;
+}
+
+.install-doc pre[class*="language-"] code[class*="language-"] {
+    padding: 0;
 }
 
 @media (max-width: 720px) {
