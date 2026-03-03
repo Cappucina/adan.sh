@@ -76,6 +76,27 @@
     border-bottom: #383838 1px solid;
 }
 
+.install-navbar {
+    position: relative;
+    align-items: center;
+    padding-left: 180px;
+}
+
+.install-navbar .logo-link {
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.install-navbar .logo-link::after {
+    display: none;
+}
+
+.install-navbar .logo-link img {
+    display: block;
+}
+
 .code-sample {
     max-width: 1100px;
     margin: 40px auto 80px;
