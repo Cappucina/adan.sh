@@ -3,6 +3,9 @@
 // To make things feel like seamless
 
 (() => {
+    const MIN_LOADER_MS = 300;
+    const loaderStartTime = Date.now();
+
     const root = document.documentElement;
     root.classList.add("adan-loading-active");
 
@@ -86,10 +89,16 @@ html.adan-loading-active body > *:not(#adan-global-loader) {
         root.classList.remove("adan-loading-active");
     };
 
-    const waitForPageReadiness = () => Promise
+    const waitUntilReady = () => Promise
         .resolve(window.AdanPageReadyPromise)
         .catch(() => undefined)
         .then(() => undefined);
+
+    const waitForLoader = () => {
+        const elapsed = Date.now() - loaderStartTime;
+        const remaining = Math.max(0, MIN_LOADER_MS - elapsed);
+        return new Promise((resolve) => setTimeout(resolve, remaining));
+    };
 
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", ensureLoader, { once: true });
@@ -98,6 +107,6 @@ html.adan-loading-active body > *:not(#adan-global-loader) {
     }
 
     window.addEventListener("load", () => {
-        waitForPageReadiness().then(hideLoader);
+        Promise.all([waitUntilReady(), waitForLoader()]).then(hideLoader);
     }, { once: true });
 })();
