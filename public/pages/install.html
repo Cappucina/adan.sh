@@ -36,8 +36,14 @@
 
     <main class="install-doc">
         <header class="install-doc-header">
+            <p class="install-doc-kicker">Official Resource</p>
             <h1>ADAN Installation Guide</h1>
         </header>
+
+        <section class="install-toc-card">
+            <h2>Table of Contents</h2>
+            <ul id="install-toc-list"></ul>
+        </section>
 
         <section class="install-doc-section">
             <div id="install-markdown" class="markdown-body"></div>
@@ -46,6 +52,7 @@
 
     <script>
         const markdownRoot = document.getElementById("install-markdown");
+        const tocListRoot = document.getElementById("install-toc-list");
 
         const slugify = (text) => text
             .toLowerCase()
@@ -68,6 +75,18 @@
                 if (!heading.id) {
                     heading.id = slugify(heading.textContent);
                 }
+            });
+
+            const tocHeadings = markdownRoot.querySelectorAll("h2");
+            tocListRoot.innerHTML = "";
+            tocHeadings.forEach((heading) => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.className = "toc-link";
+                link.href = `#${heading.id}`;
+                link.textContent = heading.textContent;
+                listItem.appendChild(link);
+                tocListRoot.appendChild(listItem);
             });
 
             if (window.Prism) {

@@ -1,8 +1,3 @@
-## Table of Contents
-
-- [Build the Compiler from Source](#build-the-compiler-from-source)
-- [Useful Make Commands](#useful-make-commands)
-
 ## Build the Compiler from Source
 
 > It's highly recommended to use a mainstream Linux distribution such as Ubuntu, Fedora, or Arch Linux when compiling the ADAN compiler yourself.
