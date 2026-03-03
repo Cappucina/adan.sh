@@ -30,9 +30,44 @@
             <a class="geist" href="https://github.com/Cappucina/ADAN.git" target="_blank">Source</a>
         </nav>
     </div>
-    
-    <h1>Installing ADAN</h1>
-    <p>I'm too lazy to write this right now</p>
+
+    <main class="install-doc">
+        <header class="install-doc-header">
+            <h1>ADAN Installation Guide</h1>
+            <p class="install-doc-description">A quick reference for building the ADAN compiler from source using the official repository workflow.</p>
+        </header>
+
+        <section class="install-doc-section">
+            <h2>Build the Compiler from Source</h2>
+            <ol class="install-steps">
+                <li>
+                    <h3>1. Clone the repository</h3>
+                    <pre><code class="language-bash">git clone https://github.com/Cappucina/ADAN.git
+cd ADAN</code></pre>
+                </li>
+                <li>
+                    <h3>2. Install dependencies (manual path)</h3>
+                    <p>Run the dependency script before compiling manually.</p>
+                    <pre><code class="language-bash">chmod +x ./dependencies.sh
+./dependencies.sh</code></pre>
+                </li>
+                <li>
+                    <h3>3. Compile with Make</h3>
+                    <pre><code class="language-bash">make</code></pre>
+                </li>
+            </ol>
+        </section>
+
+        <section class="install-doc-section">
+            <h2>Useful Make Commands</h2>
+            <pre><code class="language-bash">make         # Clean, build, and run the binary
+make build   # Clean and create a fresh binary
+make run     # Clear terminal and run an existing binary
+make format  # Format C files in ./src using .clang-format
+make clean   # Remove existing binary in ./build
+make install # Install required dependencies (Linux only)</code></pre>
+        </section>
+    </main>
 </body>
 
 </html>
