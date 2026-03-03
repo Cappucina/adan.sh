@@ -26,6 +26,11 @@ button,
     gap: 6px;
 }
 
+a::after {
+    content: none;
+    display: none;
+}
+
 a[target="_blank"]::after,
 a.external-link::after {
     content: "";
