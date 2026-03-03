@@ -1,5 +1,8 @@
-.stack-sans-notch {
-    font-family: 'Stack Sans Notch', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+.geist {
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .hero {
@@ -30,7 +33,7 @@
 
 .subdomain {
     opacity: 0.25;
-    font-size: 0.55em;
+    font-size: 0.6em;
     position: relative;
     color: rgb(120, 120, 120);
     margin-left: 6px;

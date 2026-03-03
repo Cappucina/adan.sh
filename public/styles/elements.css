@@ -22,3 +22,9 @@ button:hover {
     border-color: #4a4a4a;
 }
 
+.unselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
