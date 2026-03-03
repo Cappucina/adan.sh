@@ -26,9 +26,8 @@ button,
     gap: 6px;
 }
 
-a::after,
-button::after,
-.btn::after {
+a[target="_blank"]::after,
+a.external-link::after {
     content: "";
     display: inline-block;
     width: 14px;
