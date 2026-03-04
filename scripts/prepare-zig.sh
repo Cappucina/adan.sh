@@ -4,7 +4,7 @@ set -euo pipefail
 ZIG_VERSION="0.13.0"
 ZIG_ARCH="zig-linux-x86_64-${ZIG_VERSION}"
 URL="https://ziglang.org/download/${ZIG_VERSION}/${ZIG_ARCH}.tar.xz"
-STAMP="v4-stripped"
+STAMP="v5-stripped"
 
 mkdir -p bin/zig-dist
 
@@ -31,6 +31,8 @@ rm -rf bin/zig-dist/lib/libc/mingw
 rm -rf bin/zig-dist/lib/libc/wasi
 rm -rf bin/zig-dist/lib/libc/musl
 rm -rf bin/zig-dist/lib/libunwind
+rm -rf bin/zig-dist/lib/libc/glibc
+rm -rf bin/zig-dist/lib/compiler_rt
 
 find bin/zig-dist/lib/libc/include -maxdepth 1 -mindepth 1 -type d \
     ! -name 'x86_64*' \
