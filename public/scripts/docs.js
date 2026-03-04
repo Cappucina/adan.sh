@@ -38,7 +38,24 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!heading.id) heading.id = slugify(heading.textContent);
         });
 
-        if (window.Prism) Prism.highlightAllUnder(contentEl);
+        if (window.Prism) {
+            if (!Prism.languages.adan) {
+                Prism.languages.adan = {
+                    "comment": /\/\/.*/,
+                    "string": {
+                        pattern: /`(?:[^`\\]|\\.)*`|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/,
+                        greedy: true,
+                    },
+                    "keyword": /\b(?:import|set|fun|return|if|else)\b/,
+                    "type": /\b(?:i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|string|void|bool)\b/,
+                    "boolean": /\b(?:true|false|null)\b/,
+                    "number": /\b\d+(?:\.\d+)?\b/,
+                    "operator": /[+\-*\/=<>!&|^~%]+/,
+                    "punctuation": /[{}[\];(),.]/,
+                };
+            }
+            Prism.highlightAllUnder(contentEl);
+        }
         if (window.attachCopyButtons) window.attachCopyButtons(contentEl);
     };
 
