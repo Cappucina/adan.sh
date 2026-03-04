@@ -59,18 +59,16 @@ export function warmClang(): Promise<string> {
 
             if (!existsSync(join(ZIG_GLOBAL_CACHE, ".warmed"))) {
                 console.log("[runner] Warming zig musl cache (first cold start)...");
-                await new Promise<void>((resolve, reject) => {
-                    const warmSrc = join(tmpdir(), "_adan_musl_warm.c");
-                    writeFileSync(warmSrc, "int main(void){return 0;}\n");
-                    const proc = spawn(CLANG_WRAP_PATH, [warmSrc, "-o", join(tmpdir(), "_adan_musl_warm")]);
-                    proc.on("close", (code) => {
-                        unlinkSync(warmSrc);
-                        try { unlinkSync(join(tmpdir(), "_adan_musl_warm")); } catch {}
-                        if (code === 0) { writeFileSync(join(ZIG_GLOBAL_CACHE, ".warmed"), ""); resolve(); }
-                        else reject(new Error(`zig musl warm failed with code ${code}`));
-                    });
-                    proc.on("error", reject);
-                });
+                const warmSrc = join(tmpdir(), "_adan_musl_warm.c");
+                writeFileSync(warmSrc, "int main(void){return 0;}\n");
+                const warmOut = join(tmpdir(), "_adan_musl_warm");
+                const warmResult = await spawnCollect(CLANG_WRAP_PATH, [warmSrc, "-o", warmOut], 60_000);
+                try { unlinkSync(warmSrc); } catch {}
+                try { unlinkSync(warmOut); } catch {}
+                if (warmResult.exitCode !== 0) {
+                    throw new Error(`zig musl warm failed (code ${warmResult.exitCode}):\n${warmResult.stderr}`);
+                }
+                writeFileSync(join(ZIG_GLOBAL_CACHE, ".warmed"), "");
                 console.log("[runner] zig musl cache warmed");
             }
 
