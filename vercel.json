@@ -1,0 +1,35 @@
+{
+    "version": 2,
+    "rewrites": [
+        {
+            "source": "/",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "docs.adan.sh"
+                }
+            ],
+            "destination": "/pages/docs.html"
+        },
+        {
+            "source": "/",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "install.adan.sh"
+                }
+            ],
+            "destination": "/pages/install.html"
+        },
+        {
+            "source": "/",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "adan.sh"
+                }
+            ],
+            "destination": "/index.html"
+        }
+    ]
+}
