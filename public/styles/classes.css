@@ -435,3 +435,206 @@ code[class*="language-adan"] .token.punctuation {
 code[class*="language-adan"] .token.boolean {
     color: #00e5ff !important;
 }
+
+/* ── Playground ──────────────────────────────────────────────────────────── */
+
+.pg-main {
+    display: flex;
+    height: calc(100vh - 90px); /* viewport minus navbar */
+    gap: 12px;
+    padding: 0 16px 16px;
+    box-sizing: border-box;
+}
+
+.pg-pane {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    min-width: 0;
+    background: rgba(30, 18, 18, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pg-pane-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    font-size: 13px;
+    color: rgb(160, 160, 160);
+    font-family: "Geist", sans-serif;
+    user-select: none;
+}
+
+.pg-run-btn {
+    font-family: "Geist", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 14px;
+    background: rgba(200, 40, 40, 0.2);
+    border: 1px solid rgba(200, 40, 40, 0.45);
+    color: rgb(240, 180, 180);
+    border-radius: 5px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.pg-run-btn:hover:not(:disabled) {
+    background: rgba(200, 40, 40, 0.32);
+    border-color: rgba(200, 40, 40, 0.7);
+}
+
+.pg-run-btn:disabled,
+.pg-run-btn.is-running {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.pg-exit-badge {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: "Geist", sans-serif;
+}
+
+.pg-badge-ok {
+    background: rgba(40, 180, 80, 0.18);
+    color: rgb(120, 220, 140);
+    border: 1px solid rgba(40, 180, 80, 0.3);
+}
+
+.pg-badge-err {
+    background: rgba(200, 40, 40, 0.18);
+    color: rgb(240, 140, 140);
+    border: 1px solid rgba(200, 40, 40, 0.3);
+}
+
+/* Editor: stacked textarea over prism pre */
+.pg-editor-wrap {
+    position: relative;
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+.pg-editor-pre,
+.pg-textarea {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", "Menlo", monospace;
+    font-size: 13.5px;
+    line-height: 1.65;
+    tab-size: 4;
+    white-space: pre;
+    overflow: auto;
+    word-wrap: normal;
+    word-spacing: normal;
+    letter-spacing: normal;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.pg-editor-pre {
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Use a more specific selector to beat pre[class*="language-"] (0,1,1) rules
+   from both classes.css and the Prism CDN theme */
+.pg-editor-wrap .pg-editor-pre {
+    /* defeat Prism tomorrow theme overrides */
+    margin: 0 !important;
+    padding: 14px 16px !important;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", "Menlo", monospace !important;
+    font-size: 13.5px !important;
+    line-height: 1.65 !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    text-shadow: none !important;
+}
+
+.pg-editor-wrap .pg-editor-pre code {
+    background: transparent !important;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", "Menlo", monospace !important;
+    font-size: 13.5px !important;
+    line-height: 1.65 !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    padding: 0 !important;
+    white-space: pre !important;
+    tab-size: 4 !important;
+    text-shadow: none !important;
+}
+
+.pg-textarea {
+    z-index: 2;
+    color: transparent;
+    caret-color: #e0e0e0;
+    resize: none;
+    outline: none;
+    -webkit-text-fill-color: transparent;
+    background: transparent !important;
+}
+
+/* Output pane */
+.pg-output {
+    margin: 0;
+    flex: 1 1 auto;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", "Menlo", monospace;
+    font-size: 13.5px;
+    line-height: 1.65;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.pg-out-stdout {
+    color: rgb(220, 220, 220);
+}
+
+.pg-out-err {
+    color: rgb(240, 130, 130);
+}
+
+.pg-out-placeholder {
+    color: rgb(100, 100, 100);
+    font-style: italic;
+}
+
+@media (max-width: 720px) {
+    .pg-main {
+        flex-direction: column;
+        height: auto;
+        min-height: calc(100vh - 90px);
+    }
+
+    .pg-pane {
+        flex: none;
+        height: 45vh;
+    }
+}

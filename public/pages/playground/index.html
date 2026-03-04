@@ -48,6 +48,31 @@
             <a class="geist" href="https://github.com/Cappucina/ADAN.git" target="_blank">Source</a>
         </nav>
     </div>
+
+    <main class="pg-main">
+        <div class="pg-pane">
+            <div class="pg-pane-header">
+                <span>main.adn</span>
+                <button class="pg-run-btn" id="pg-run-btn" title="Run (Ctrl+Enter)">Run</button>
+            </div>
+            <div class="pg-editor-wrap">
+                <pre class="pg-editor-pre"><code id="pg-highlight-code" class="language-adan"></code></pre>
+                <textarea id="pg-textarea" class="pg-textarea" spellcheck="false" autocorrect="off" autocapitalize="off"
+                    autocomplete="off" wrap="off" aria-label="ADAN source code editor"></textarea>
+            </div>
+        </div>
+
+        <div class="pg-pane">
+            <div class="pg-pane-header">
+                <span>output</span>
+                <span class="pg-exit-badge" id="pg-exit-badge"></span>
+            </div>
+            <pre class="pg-output"
+                id="pg-output"><span class="pg-out-placeholder">Click Run (or Ctrl + Enter) to execute your code.</span></pre>
+        </div>
+    </main>
+
+    <script src="../../scripts/playground.js"></script>
 </body>
 
 </html>

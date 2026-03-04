@@ -1,7 +1,22 @@
 {
     "version": 2,
     "outputDirectory": "public",
+    "functions": {
+        "api/run.ts": {
+            "maxDuration": 30
+        }
+    },
     "routes": [
+        {
+            "src": "/(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "api.adan.sh"
+                }
+            ],
+            "dest": "/api/$1"
+        },
         {
             "src": "/",
             "has": [
