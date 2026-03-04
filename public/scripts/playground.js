@@ -7,8 +7,6 @@
 
     const SAMPLE_CODE = `import "adan/io";
 
-set language: string = "ADAN";
-
 fun main(): i32 {
     println("Hello, world!");
 
@@ -106,7 +104,7 @@ fun main(): i32 {
     const setRunning = (isRunning) => {
         runBtn.disabled = isRunning;
         runBtn.classList.toggle("is-running", isRunning);
-        runBtn.textContent = isRunning ? "Running…" : "▶  Run";
+        runBtn.textContent = isRunning ? "Running…" : "Run";
     };
 
     const showOutput = ({ stdout, stderr, exitCode, timedOut, error }) => {
