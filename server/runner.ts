@@ -1,5 +1,5 @@
 import { downloadAdanBinary } from "./adan";
-import { existsSync, writeFileSync, chmodSync, unlinkSync, mkdirSync } from "fs";
+import { existsSync, writeFileSync, chmodSync, unlinkSync, mkdirSync, cpSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import { spawn } from "child_process";
@@ -11,8 +11,10 @@ const MAX_OUTPUT_BYTES = 64 * 1024; // 64 KB output cap
 
 const BUNDLED_ZIG = join(process.cwd(), "bin", "zig-dist", "zig");
 const BUNDLED_ZIG_LIB = join(process.cwd(), "bin", "zig-dist", "lib");
+const BUNDLED_ZIG_PREWARM = join(process.cwd(), "bin", "zig-dist", "zig-prewarm");
 const CLANG_WRAP_DIR = join(tmpdir(), "adan-clang-wrap");
 const CLANG_WRAP_PATH = join(CLANG_WRAP_DIR, "clang");
+const ZIG_GLOBAL_CACHE = join(tmpdir(), "zig-global-cache");
 
 let binaryReady: Promise<string> | null = null;
 let clangReady: Promise<string> | null = null;
@@ -46,10 +48,20 @@ export function warmClang(): Promise<string> {
             }
             console.log("[runner] Using bundled zig at", BUNDLED_ZIG);
 
+            // Seed the zig global cache with pre-warmed CRT + compiler_rt objects
+            // that were compiled at build time. This lets zig cc link without
+            // needing glibc/compiler_rt source trees bundled.
+            if (existsSync(BUNDLED_ZIG_PREWARM) && !existsSync(ZIG_GLOBAL_CACHE)) {
+                console.log("[runner] Seeding zig global cache from pre-warm...");
+                mkdirSync(ZIG_GLOBAL_CACHE, { recursive: true });
+                cpSync(BUNDLED_ZIG_PREWARM, ZIG_GLOBAL_CACHE, { recursive: true });
+                console.log("[runner] zig global cache seeded");
+            }
+
             mkdirSync(CLANG_WRAP_DIR, { recursive: true });
             writeFileSync(
                 CLANG_WRAP_PATH,
-                `#!/bin/sh\nexec env ZIG_LIB_DIR="${BUNDLED_ZIG_LIB}" ZIG_GLOBAL_CACHE_DIR="/tmp/zig-global-cache" ZIG_LOCAL_CACHE_DIR="/tmp/zig-local-cache" "${BUNDLED_ZIG}" cc -target x86_64-linux-gnu -march=x86_64 --sysroot / -rtlib=libgcc -unwindlib=libgcc "$@"\n`,
+                `#!/bin/sh\nexec env ZIG_LIB_DIR="${BUNDLED_ZIG_LIB}" ZIG_GLOBAL_CACHE_DIR="${ZIG_GLOBAL_CACHE}" ZIG_LOCAL_CACHE_DIR="/tmp/zig-local-cache" "${BUNDLED_ZIG}" cc -target x86_64-linux-gnu -march=x86_64 "$@"\n`,
                 { mode: 0o755 },
             );
 
