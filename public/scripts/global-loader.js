@@ -118,4 +118,10 @@ html.adan-loading-active body > *:not(#adan-global-loader) {
         ? document.currentScript.src
         : window.location.href).href;
     document.head.appendChild(swScript);
+
+    const copyScript = document.createElement("script");
+    copyScript.src = new URL("../scripts/copy.js", document.currentScript
+        ? document.currentScript.src
+        : window.location.href).href;
+    document.head.appendChild(copyScript);
 })();

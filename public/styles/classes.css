@@ -371,6 +371,40 @@ pre[class*="language-"] code {
     opacity: 0.25;
 }
 
+pre[class*="language-"],
+pre[class*="language-"] code {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgb(160, 160, 160);
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 10;
+}
+
+pre[class*="language-"]:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
 code[class*="language-adan"] .token.keyword {
     color: #ff2d78 !important;
     font-style: normal;
