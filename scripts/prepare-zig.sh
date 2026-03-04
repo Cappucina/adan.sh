@@ -4,7 +4,7 @@ set -euo pipefail
 ZIG_VERSION="0.13.0"
 ZIG_ARCH="zig-linux-x86_64-${ZIG_VERSION}"
 URL="https://ziglang.org/download/${ZIG_VERSION}/${ZIG_ARCH}.tar.xz"
-STAMP="v8-stripped"
+STAMP="v9-stripped"
 
 mkdir -p bin/zig-dist
 
@@ -43,6 +43,17 @@ find bin/zig-dist/lib/libc/include -maxdepth 1 -mindepth 1 -type d \
     ! -name 'x86_64*' \
     ! -name 'generic*' \
     ! -name 'any*' \
+    -exec rm -rf {} +
+
+# Strip non-x86_64 glibc sysdeps (the bulk of glibc/ size)
+find bin/zig-dist/lib/libc/glibc/sysdeps -maxdepth 1 -mindepth 1 -type d \
+    ! -name 'x86_64' \
+    ! -name 'generic' \
+    ! -name 'unix' \
+    -exec rm -rf {} +
+find bin/zig-dist/lib/libc/glibc/sysdeps/unix/sysv/linux -maxdepth 1 -mindepth 1 -type d \
+    ! -name 'x86_64' \
+    ! -name 'generic' \
     -exec rm -rf {} +
 
 echo "$STAMP" > bin/zig-dist/.stamp
