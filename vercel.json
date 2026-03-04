@@ -1,37 +1,29 @@
 {
     "version": 2,
     "outputDirectory": "public",
-    "cleanUrls": true,
-    "rewrites": [
+    "routes": [
         {
-            "source": "/",
+            "src": "/",
             "has": [
                 {
                     "type": "host",
                     "value": "docs.adan.sh"
                 }
             ],
-            "destination": "/pages/docs.html"
+            "dest": "/pages/docs.html"
         },
         {
-            "source": "/",
+            "src": "/",
             "has": [
                 {
                     "type": "host",
                     "value": "install.adan.sh"
                 }
             ],
-            "destination": "/pages/install.html"
+            "dest": "/pages/install.html"
         },
         {
-            "source": "/",
-            "has": [
-                {
-                    "type": "host",
-                    "value": "www.adan.sh"
-                }
-            ],
-            "destination": "/index.html"
+            "handle": "filesystem"
         }
     ]
 }
