@@ -94,6 +94,7 @@
 
 .navbar {
     display: flex;
+    align-items: center;
     justify-content: left;
     gap: 40px;
     padding: 30px 80px;
