@@ -12,7 +12,6 @@ const setCors = (res: VercelResponse) => {
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    // Always set CORS headers first — even if we throw below
     setCors(res);
 
     try {
