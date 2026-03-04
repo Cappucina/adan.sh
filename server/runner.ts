@@ -58,8 +58,8 @@ export function warmClang(): Promise<string> {
                         "--strip-components=1",
                         `${ZIG_ARCH_NAME}/zig`,
                     ]);
-                    const errChunks: Buffer[] = [];
-                    proc.stderr?.on("data", (c: Buffer) => errChunks.push(c));
+                    const errChunks: Uint8Array[] = [];
+                    proc.stderr?.on("data", (c: Uint8Array) => errChunks.push(c));
                     proc.on("close", (code) => {
                         if (code === 0) return resolve();
                         reject(new Error(`tar failed (${code}): ${Buffer.concat(errChunks).toString()}`));
@@ -105,8 +105,8 @@ function spawnCollect(
 ): Promise<{ stdout: string; stderr: string; exitCode: number; timedOut: boolean }> {
     return new Promise((resolve) => {
         const proc = spawn(cmd, args, env ? { env } : undefined);
-        const stdoutChunks: Buffer[] = [];
-        const stderrChunks: Buffer[] = [];
+        const stdoutChunks: Uint8Array[] = [];
+        const stderrChunks: Uint8Array[] = [];
         let timedOut = false;
 
         const timeoutHandle = setTimeout(() => {
@@ -114,10 +114,10 @@ function spawnCollect(
             try { proc.kill("SIGKILL"); } catch { }
         }, timeoutMs);
 
-        proc.stdout.on("data", (chunk: Buffer) => stdoutChunks.push(chunk));
-        proc.stderr.on("data", (chunk: Buffer) => stderrChunks.push(chunk));
+        proc.stdout.on("data", (chunk: Uint8Array) => stdoutChunks.push(chunk));
+        proc.stderr.on("data", (chunk: Uint8Array) => stderrChunks.push(chunk));
 
-        const decode = (chunks: Buffer[]) => {
+        const decode = (chunks: Uint8Array[]) => {
             const buf = Buffer.concat(chunks);
             const text = buf.subarray(0, MAX_OUTPUT_BYTES).toString("utf8");
             return buf.byteLength > MAX_OUTPUT_BYTES ? text + "\n[output truncated]" : text;

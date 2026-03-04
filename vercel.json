@@ -9,12 +9,6 @@
             "maxDuration": 60
         }
     },
-    "crons": [
-        {
-            "path": "/api/warm",
-            "schedule": "*/5 * * * *"
-        }
-    ],
     "routes": [
         {
             "src": "/api/(.*)",
