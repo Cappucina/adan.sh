@@ -23,7 +23,7 @@ A string comes down to just being an array of characters, which allows you to ea
 
 Using the `string` type, you can write a new variable and wrap the value portion inside of `"` (quotation marks).
 
-```
+```adan
 set variableName: string = "Hello, world!";
 ```
 
@@ -31,7 +31,7 @@ set variableName: string = "Hello, world!";
 
 Void is *special* in a sense, only capable of being assigned to functions and referring to a function not returning any value.
 
-```
+```adan
 fun myFun(): void {
     return; // Anything else isn't allowed.
 }
