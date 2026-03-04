@@ -12,7 +12,7 @@ fun main(): i32 {
     return 0; // Success
 }`;
 
-        // Register the ADAN language grammar for Prism
+        // ai gemenated because i am NOT learning regex :sob:
         if (window.Prism) {
             Prism.languages.adan = {
                 'comment': /\/\/.*/,
@@ -20,8 +20,8 @@ fun main(): i32 {
                     pattern: /`(?:[^`\\]|\\.)*`|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/,
                     greedy: true
                 },
-                'keyword': /\b(?:import|export|set|fun|return|if|else|while|for|in|match|break|continue|use)\b/,
-                'type': /\b(?:i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|string|bool|void|char)\b/,
+                'keyword': /\b(?:import|set|fun|return|if|else)\b/,
+                'type': /\b(?:i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|string|void)\b/, // too lazy to finish making the type match, close enough for example
                 'boolean': /\b(?:true|false|null)\b/,
                 'number': /\b\d+(?:\.\d+)?\b/,
                 'operator': /[+\-*\/=<>!&|^~%]+/,

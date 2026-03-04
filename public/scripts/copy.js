@@ -4,8 +4,8 @@
         <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
     </svg>`;
 
-    const attachCopyButtons = () => {
-        document.querySelectorAll('pre[class*="language-"]').forEach((pre) => {
+    const attachCopyButtons = (root = document) => {
+        root.querySelectorAll('pre[class*="language-"]').forEach((pre) => {
             if (pre.querySelector('.copy-btn')) return;
 
             const btn = document.createElement('button');
@@ -24,12 +24,14 @@
         });
     };
 
+    window.attachCopyButtons = attachCopyButtons;
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', attachCopyButtons);
+        document.addEventListener('DOMContentLoaded', () => attachCopyButtons());
     } else {
         attachCopyButtons();
     }
 
-    window.addEventListener('load', attachCopyButtons);
+    window.addEventListener('load', () => attachCopyButtons());
 })();
 

@@ -42,6 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.Prism) {
             Prism.highlightAllUnder(markdownRoot);
         }
+
+        if (window.attachCopyButtons) {
+            window.attachCopyButtons(markdownRoot);
+        }
     };
 
     const loadInstallContent = () => {
