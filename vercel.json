@@ -23,14 +23,14 @@
             "destination": "/pages/install.html"
         },
         {
-            "source": "/(.*)",
+            "source": "/",
             "has": [
                 {
                     "type": "host",
                     "value": "adan.sh"
                 }
             ],
-            "destination": "/$1"
+            "destination": "/index.html"
         }
     ]
 }
