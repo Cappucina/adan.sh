@@ -51,23 +51,31 @@ export function warmClang(): Promise<string> {
                 writeFileSync(tarPath, Buffer.from(await res.arrayBuffer()));
                 console.log("[runner] zig archive written, extracting...");
 
-                // Vercel Lambda's PATH is minimal — resolve tar by full path.
-                const tarBin = ["/usr/bin/tar", "/bin/tar"].find(existsSync) ?? "tar";
+                // Vercel Lambda has no `tar` in PATH. Use Python 3's built-in
+                // tarfile module instead — it has native xz (lzma) support and
+                // is always present in the Amazon Linux Lambda environment.
+                const pythonBin = ["/usr/bin/python3", "/usr/local/bin/python3", "python3"]
+                    .find(p => p === "python3" || existsSync(p)) ?? "python3";
+
+                const extractScript = [
+                    "import tarfile, os, sys",
+                    `t = tarfile.open(${JSON.stringify(tarPath)})`,
+                    `m = t.getmember(${JSON.stringify(ZIG_ARCH_NAME + "/zig")})`,
+                    `m.name = "zig"`,
+                    `t.extract(m, ${JSON.stringify(tmpdir())}, set_attrs=False)`,
+                    `t.close()`,
+                    `print("extracted", flush=True)`,
+                ].join("\n");
 
                 await new Promise<void>((resolve, reject) => {
-                    const proc = spawn(tarBin, [
-                        "xJf", tarPath,
-                        "-C", tmpdir(),
-                        "--strip-components=1",
-                        `${ZIG_ARCH_NAME}/zig`,
-                    ]);
+                    const proc = spawn(pythonBin, ["-c", extractScript]);
                     const errChunks: Uint8Array[] = [];
                     proc.stderr?.on("data", (c: Uint8Array) => errChunks.push(c));
                     proc.on("close", (code) => {
                         if (code === 0) return resolve();
-                        reject(new Error(`tar failed (${code}): ${Buffer.concat(errChunks).toString()}`));
+                        reject(new Error(`python3 extract failed (${code}): ${Buffer.concat(errChunks).toString()}`));
                     });
-                    proc.on("error", reject);
+                    proc.on("error", (err) => reject(new Error(`spawn python3 failed: ${err.message}`)));
                 });
 
                 try { unlinkSync(tarPath); } catch { }
