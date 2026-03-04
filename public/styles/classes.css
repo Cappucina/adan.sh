@@ -15,10 +15,32 @@
     padding: 0 20px;
 }
 
+.hero-logo-wrapper {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-logo-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(200, 40, 40, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
 .hero-logo {
     width: 180px;
     height: 180px;
-    flex: 0 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-text {
@@ -29,6 +51,7 @@
     font-size: 90px;
     margin: 0;
     line-height: 1;
+    font-weight: 700;
 }
 
 .subdomain {
@@ -43,6 +66,7 @@
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 0;
+    letter-spacing: 0.5px;
 }
 
 @media (max-width: 720px) {
@@ -278,9 +302,12 @@
 }
 
 .code-inner {
-    background: #2b2b2b;
+    background: rgba(30, 18, 18, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 8px;
-    border: #383838 1px solid;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(200, 40, 40, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.04);
     padding: 20px;
     display: flex;
     align-items: flex-start;
@@ -307,6 +334,13 @@ pre[class*="language-"] {
     margin: 0;
     overflow: auto;
     border-radius: 6px;
+    background: #100808 !important;
+    border: 1px solid rgba(200, 40, 40, 0.12);
+}
+
+code[class*="language-"],
+pre[class*="language-"] code {
+    background: transparent !important;
 }
 
 @media (max-width: 720px) {
@@ -329,4 +363,43 @@ pre[class*="language-"] {
     content: "» ";
     margin-right: 4px;
     opacity: 0.25;
+}
+
+/* ── ADAN syntax highlight palette ─────────────────────────────────── */
+/* Keywords: import, set, fun, return, etc.  →  Neon Pink */
+code[class*="language-adan"] .token.keyword {
+    color: #ff2d78 !important;
+    font-style: normal;
+}
+
+/* Built-in types: i32, string, f64, bool …  →  Electric Cyan */
+code[class*="language-adan"] .token.type {
+    color: #00e5ff !important;
+}
+
+/* String literals & template literals  →  Safety Orange */
+code[class*="language-adan"] .token.string {
+    color: #ff7c00 !important;
+}
+
+/* Numbers  →  softer gold to complement the palette */
+code[class*="language-adan"] .token.number {
+    color: #ffd166 !important;
+}
+
+/* Comments stay muted */
+code[class*="language-adan"] .token.comment {
+    color: #666e7a !important;
+    font-style: italic;
+}
+
+/* Operators & punctuation */
+code[class*="language-adan"] .token.operator,
+code[class*="language-adan"] .token.punctuation {
+    color: #aaaaaa !important;
+}
+
+/* Booleans share the type cyan */
+code[class*="language-adan"] .token.boolean {
+    color: #00e5ff !important;
 }

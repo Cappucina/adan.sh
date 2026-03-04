@@ -1,5 +1,7 @@
 body {
-    background-color: rgb(40, 40, 40);
+    background: radial-gradient(ellipse at 50% 0%, #2a1010 0%, #0d0d0d 70%);
+    background-attachment: fixed;
+    min-height: 100vh;
     color: white;
 }
 
