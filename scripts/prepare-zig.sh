@@ -4,7 +4,7 @@ set -euo pipefail
 ZIG_VERSION="0.13.0"
 ZIG_ARCH="zig-linux-x86_64-${ZIG_VERSION}"
 URL="https://ziglang.org/download/${ZIG_VERSION}/${ZIG_ARCH}.tar.xz"
-STAMP="v10-precached"
+STAMP="v11-precached"
 
 mkdir -p bin/zig-dist
 
@@ -48,6 +48,7 @@ find bin/zig-dist/lib/libc/include -maxdepth 1 -mindepth 1 -type d \
 # Strip non-x86_64 glibc sysdeps
 find bin/zig-dist/lib/libc/glibc/sysdeps -maxdepth 1 -mindepth 1 -type d \
     ! -name 'x86_64' \
+    ! -name 'x86' \
     ! -name 'generic' \
     ! -name 'unix' \
     -exec rm -rf {} +
