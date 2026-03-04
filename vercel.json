@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "outputDirectory": "public",
     "cleanUrls": true,
     "rewrites": [
         {
@@ -21,6 +22,16 @@
                 }
             ],
             "destination": "/pages/install.html"
+        },
+        {
+            "source": "/",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.adan.sh"
+                }
+            ],
+            "destination": "/index.html"
         }
     ]
 }
