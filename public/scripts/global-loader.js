@@ -109,4 +109,13 @@ html.adan-loading-active body > *:not(#adan-global-loader) {
     window.addEventListener("load", () => {
         Promise.all([waitUntilReady(), waitForLoader()]).then(hideLoader);
     }, { once: true });
+
+    // create service worker for asset caching, but do it
+    //   asynchronously to avoid blocking the critical
+    //   loading path of the loader itself (which is just the logo image)
+    const swScript = document.createElement("script");
+    swScript.src = new URL("../scripts/caching.js", document.currentScript
+        ? document.currentScript.src
+        : window.location.href).href;
+    document.head.appendChild(swScript);
 })();
