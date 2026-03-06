@@ -6,7 +6,7 @@
 
     const attachCopyButtons = (root = document) => {
         root.querySelectorAll('pre[class*="language-"]').forEach((pre) => {
-            if (pre.querySelector('.copy-btn')) return;
+            if (pre.parentNode && pre.parentNode.classList.contains('copy-wrapper')) return;
 
             const btn = document.createElement('button');
             btn.className = 'copy-btn';
@@ -19,8 +19,11 @@
                 navigator.clipboard.writeText(text).catch(() => {});
             });
 
-            pre.style.position = 'relative';
-            pre.appendChild(btn);
+            const wrapper = document.createElement('div');
+            wrapper.className = 'copy-wrapper';
+            pre.parentNode.insertBefore(wrapper, pre);
+            wrapper.appendChild(pre);
+            wrapper.appendChild(btn);
         });
     };
 

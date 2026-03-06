@@ -447,6 +447,10 @@ pre[class*="language-"] code {
     user-select: text;
 }
 
+.copy-wrapper {
+    position: relative;
+}
+
 .copy-btn {
     position: absolute;
     top: 8px;
@@ -464,7 +468,7 @@ pre[class*="language-"] code {
     z-index: 10;
 }
 
-pre[class*="language-"]:hover .copy-btn {
+.copy-wrapper:hover .copy-btn {
     opacity: 1;
 }
 
@@ -555,7 +559,7 @@ code[class*="language-adan"] .token.boolean {
 .docs-layout {
     display: flex;
     align-items: flex-start;
-    max-width: 900px;
+    max-width: 1164px;
     margin: 0 auto;
     padding: 24px 40px 80px;
     gap: 24px;
