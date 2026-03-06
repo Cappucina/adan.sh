@@ -555,7 +555,7 @@ code[class*="language-adan"] .token.boolean {
 .docs-layout {
     display: flex;
     align-items: flex-start;
-    max-width: 1400px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 24px 40px 80px;
     gap: 24px;
