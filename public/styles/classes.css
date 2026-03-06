@@ -237,7 +237,22 @@
     overflow-x: auto;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    overflow: hidden;
+}
+
+.markdown-body table thead tr th:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+.markdown-body table thead tr th:last-child {
+    border-radius: 0 8px 0 0;
+}
+
+.markdown-body table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 8px;
+}
+
+.markdown-body table tbody tr:last-child td:last-child {
+    border-radius: 0 0 8px 0;
 }
 
 .markdown-body table thead tr {
@@ -488,8 +503,6 @@ code[class*="language-adan"] .token.punctuation {
 code[class*="language-adan"] .token.boolean {
     color: #00e5ff !important;
 }
-
-/* ── Docs sidebar nav ───────────────────────────────────────────────────── */
 
 .docs-nav {
     display: flex;
