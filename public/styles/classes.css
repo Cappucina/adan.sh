@@ -229,7 +229,8 @@
 }
 
 .markdown-body table {
-    width: 100%;
+    width: fit-content;
+    max-width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 14px;
