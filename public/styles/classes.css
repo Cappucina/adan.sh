@@ -541,7 +541,7 @@ code[class*="language-adan"] .token.boolean {
 
 .docs-layout {
     display: flex;
-    align-items: stretch;
+    align-items: flex-start;
     max-width: 1400px;
     margin: 0 auto;
     padding: 24px 40px 80px;
@@ -567,6 +567,7 @@ code[class*="language-adan"] .token.boolean {
 .docs-main {
     flex: 1 1 0;
     min-width: 0;
+    align-self: stretch;
     background: rgba(30, 18, 18, 0.45);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
