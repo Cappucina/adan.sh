@@ -35,3 +35,53 @@ make format  # Format C files in ./src using .clang-format
 make clean   # Remove existing binary in ./build
 make install # Install required dependencies (Linux only)
 ```
+
+
+## Compiler Flags
+
+```bash
+adanc -f <file.adn> [options]
+```
+
+| Flag | Description |
+|------|-------------|
+| `-f, --file <file>` | Source file to compile (`.adn` or `.adan` extension required) |
+| `-o, --output <path>` | Output path for the linked binary. If `<path>` is a directory, the binary is placed inside it named after the source file |
+| `--link` | Link the compiled IR into an executable |
+| `--libs <libs>` | Comma-separated list of extra libraries to link against |
+| `--bundle-runtime` | Bundle the built-in runtime (`adan/io`) into the binary |
+| `--bundle-embedded <mods>` | Bundle specific embedded modules into the binary (comma-separated) |
+| `--bundle-libs <libs>` | Bundle external libraries into the binary |
+| `-h, --help` | Show the help message and exit |
+
+### Examples
+
+Compile a source file to LLVM IR:
+
+```bash
+adanc -f main.adn
+```
+
+Compile and link into an executable:
+
+```bash
+adanc -f main.adn --link
+```
+
+Compile, link, and specify an output path:
+
+```bash
+adanc -f main.adn --link -o ./build/myprogram
+```
+
+Link against external libraries:
+
+```bash
+adanc -f main.adn --link --libs mylib,otherlib
+```
+
+Bundle the runtime and link:
+
+```bash
+adanc -f main.adn --link --bundle-runtime
+```
