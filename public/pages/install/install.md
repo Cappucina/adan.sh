@@ -40,7 +40,7 @@ make install # Install required dependencies (Linux only)
 ## Compiler Flags
 
 ```bash
-adanc -f <file.adn> [options]
+adan -f <file.adn> [options]
 ```
 
 | Flag | Description |
@@ -59,29 +59,29 @@ adanc -f <file.adn> [options]
 Compile a source file to LLVM IR:
 
 ```bash
-adanc -f main.adn
+adan -f main.adn
 ```
 
 Compile and link into an executable:
 
 ```bash
-adanc -f main.adn --link
+adan -f main.adn --link
 ```
 
 Compile, link, and specify an output path:
 
 ```bash
-adanc -f main.adn --link -o ./build/myprogram
+adan -f main.adn --link -o ./build/myprogram
 ```
 
 Link against external libraries:
 
 ```bash
-adanc -f main.adn --link --libs mylib,otherlib
+adan -f main.adn --link --libs mylib,otherlib
 ```
 
 Bundle the runtime and link:
 
 ```bash
-adanc -f main.adn --link --bundle-runtime
+adan -f main.adn --link --bundle-runtime
 ```
