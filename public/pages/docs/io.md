@@ -28,5 +28,6 @@ Yields program execution and waits for the user to type input. The `prompt` stri
 
 ```adan
 set name: string = input("What is your name? ");
+
 println(`Hello, ${name}!`);
 ```
