@@ -5,7 +5,7 @@ If statements let you run code only when a condition is true. The basic syntax i
 
 ```adan
 if <condition> {
-    // code to run if condition is true
+    // Code to run if condition is true
 }
 ```
 
@@ -49,7 +49,8 @@ if true {
     set message: string = "Hello!";
     println(message);
 }
-// message is not accessible here
+
+// Message is not accessible here
 ```
 
 ### Notes
