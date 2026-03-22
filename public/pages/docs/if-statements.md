@@ -1,38 +1,57 @@
-# If Statements
 
-Conditional execution in adan.sh uses the `if` statement. The syntax is:
+## If Statements
 
-```
+If statements let you run code only when a condition is true. The basic syntax is:
+
+```adan
 if <condition> {
-    ...
+    // code to run if condition is true
 }
 ```
 
-## Example
+### Example
 
-```
+```adan
+set x: i32 = 5;
 if x > 0 {
-    println("x is positive")
+    println("x is positive");
 }
 ```
 
-## Supported Operators
+### Logical and Comparison Operators
 
-- `and`, `or`, `not` (logical operators)
-- `>=`, `<=`, `==`, `!=`, `<`, `>` (comparison operators)
+You can use these operators in conditions:
 
-### Example with logical operators
+- `and`, `or`, `not` (logical)
+- `>=`, `<=`, `==`, `!=`, `<`, `>` (comparison)
 
-```
+#### Example with Operators
+
+```adan
+set x: i32 = 7;
+set y: i32 = 3;
 if x > 0 and y < 10 {
-    println("x is positive and y is less than 10")
+    println("x is positive and y is less than 10");
 }
 
+set done: bool = false;
 if not done {
-    println("Not done yet!")
+    println("Not done yet!");
 }
 ```
 
-## Notes
-- The condition must be inside the parentheses after `if` and before the opening `{`.
-- The block inside `{ ... }` is executed only if the condition is true.
+### Block Scope
+
+Variables declared inside an if block are only available in that block:
+
+```adan
+if true {
+    set message: string = "Hello!";
+    println(message);
+}
+// message is not accessible here
+```
+
+### Notes
+- The condition goes after `if` and before `{`.
+- The code inside `{ ... }` runs only if the condition is true.
