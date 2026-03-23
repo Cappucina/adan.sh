@@ -1,3 +1,17 @@
+## Install from https
+
+> curl
+
+```zsh
+bash <(curl -s https://raw.githubusercontent.com/Cuppicina/adan.sh/main/scripts/install.sh)
+```
+
+> wget
+
+```zsh
+wget -O - https://raw.githubusercontent.com/Cappucina/adan.sh/main/scripts/install.sh | bash
+```
+
 ## Build the Compiler from [Source](https://github.com/Cappucina/ADAN)
 
 > It's highly recommended to use a mainstream Linux distribution such as Ubuntu, Fedora, or Arch Linux when compiling the ADAN compiler yourself.
@@ -46,7 +60,7 @@ $ make push                # Run the push.sh script (for maintainers).
 ## Compiler Flags
 
 ```bash
-adanc -f <file.adn> [options]
+adan -f <file.adn> [options]
 ```
 
 | Flag | Description |
