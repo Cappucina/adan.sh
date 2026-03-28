@@ -396,11 +396,50 @@
     line-height: 1.7;
 }
 
+.code-kicker {
+    margin: 0 0 10px;
+    color: rgb(245, 120, 120);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
 .code-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 10px 6px;
+}
+
+.code-left h2 {
+    margin: 0;
+    font-size: 36px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+}
+
+.code-points {
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: rgb(205, 205, 205);
+}
+
+.code-points li {
+    position: relative;
+    padding-left: 18px;
+    line-height: 1.5;
+}
+
+.code-points li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: rgb(245, 73, 73);
 }
 
 .code-right {
@@ -431,6 +470,19 @@ pre[class*="language-"] code {
     .code-left {
         text-align: center;
         padding: 0;
+    }
+
+    .code-left h2 {
+        font-size: 30px;
+    }
+
+    .code-points li {
+        padding-left: 0;
+    }
+
+    .code-points li::before {
+        position: static;
+        margin-right: 6px;
     }
 
     .code-right {
