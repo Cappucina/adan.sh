@@ -9,7 +9,7 @@ function main(): i32 {
     set features: string[] = ["safe", "fast", "readable"];
 
     print("Hello from %s!", language);
-    print("Built to feel %s and run close to the metal.", "familiar");
+    print("Built to run close to the metal.");
     print("Top feature: %s", features[0]);
 
     return 0; // Success
