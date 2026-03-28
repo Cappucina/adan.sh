@@ -3,28 +3,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const res = `import "adan/io";
 
-set language: string = "ADAN";
+const language: string = "ADAN";
 
-fun main(): i32 {
-    println("Hello, world!");
-    println(\`Ran using the \${language} programming language!\`);
+function main(): i32 {
+    set features: string[] = ["safe", "fast", "readable"];
+
+    print("Hello from %s!", language);
+    print("Built to feel %s and run close to the metal.", "familiar");
+    print("Top feature: %s", features[0]);
 
     return 0; // Success
 }`;
 
-        // ai gemenated because i am NOT learning regex :sob:
         if (window.Prism) {
             Prism.languages.adan = {
-                'comment': /\/\/.*/,
+                'comment': /\/\/.*|\/\*[\s\S]*?\*\//,
                 'string': {
                     pattern: /`(?:[^`\\]|\\.)*`|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/,
                     greedy: true
                 },
-                'keyword': /\b(?:import|set|fun|return|if|else)\b/,
-                'type': /\b(?:i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|string|void)\b/, // too lazy to finish making the type match, close enough for example
-                'boolean': /\b(?:true|false|null)\b/,
+                'keyword': /\b(?:function|import|set|const|return|if|else|while|for|break|continue|type|and|or|not)\b/,
+                'type': /\b(?:i8|i32|i64|u8|u32|u64|f32|f64|string|void|bool|any)\b/,
+                'boolean': /\b(?:true|false)\b/,
                 'number': /\b\d+(?:\.\d+)?\b/,
-                'operator': /[+\-*\/=<>!&|^~%]+/,
+                'operator': /\.\.\.|[+\-*\/=<>!&|^~%]+/,
                 'punctuation': /[{}[\];(),.]/
             };
         }
