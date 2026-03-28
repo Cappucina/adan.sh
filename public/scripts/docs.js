@@ -46,11 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         pattern: /`(?:[^`\\]|\\.)*`|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/,
                         greedy: true,
                     },
-                    "keyword": /\b(?:import|set|fun|return|if|else)\b/,
-                    "type": /\b(?:i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|string|void|bool)\b/,
-                    "boolean": /\b(?:true|false|null)\b/,
+                    "keyword": /\b(?:function|import|set|const|return|if|else|while|for|break|continue|type|and|or|not)\b/,
+                    "type": /\b(?:i8|i32|i64|u8|u32|u64|f32|f64|string|void|bool|any)\b/,
+                    "boolean": /\b(?:true|false)\b/,
                     "number": /\b\d+(?:\.\d+)?\b/,
-                    "operator": /[+\-*\/=<>!&|^~%]+/,
+                    "operator": /\.\.\.|[+\-*\/=<>!&|^~%]+/,
                     "punctuation": /[{}[\];(),.]/,
                 };
             }
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const loadDoc = (slug) => {
-        const path = `/pages/docs/${slug}.md`;
+        const path = `/pages/docs/content/${slug}.md`;
         contentEl.innerHTML = "";
 
         return fetch(path)

@@ -1,6 +1,8 @@
-## Build the Compiler from [Source](https://github.com/Cappucina/ADAN)
+## Install ADAN
 
-> It's highly recommended to use a mainstream Linux distribution such as Ubuntu, Fedora, or Arch Linux when compiling the ADAN compiler yourself.
+If you only want to use the compiler, start with the latest binaries from [Releases](https://github.com/Cappucina/ADAN/releases).
+
+## Build the Compiler from Source
 
 ### Clone the repository
 
@@ -11,61 +13,62 @@ cd ADAN
 
 ### Install dependencies
 
-Run the dependency script before compiling manually.
+ADAN uses [XMake](https://xmake.io/) as its build system.
 
 ```bash
-chmod +x ./dependencies.sh
-./dependencies.sh
+xmake install
 ```
 
-### Compile with Make
+If you need to run the dependency script directly, use:
 
 ```bash
-make
+bash utils/dependencies.sh
 ```
 
-
-## Useful Make Commands
+### Build
 
 ```bash
-$ make                     # Clean, build, and run the binary file.
-$ make build               # Clean and create a fresh binary.
-$ make emit                # Build and emit LLVM IR for the sample file.
-$ make link                # Build, compile, and link the sample file.
-$ make run                 # Clear the terminal, then run the sample binary.
-$ make format              # Beautifies all C and header files in ./src and ./libs, using .clang-format.
-$ make clean               # Removes all build artifacts and sample outputs.
-$ make install             # Install all required dependencies. (Linux required for now!)
-$ make build-macos-arm64   # Build the binary for macOS ARM64 (Apple Silicon).
-$ make build-macos-x86_64  # Build the binary for macOS x86_64 (Intel Macs).
-$ make build-macos         # Build both macOS binaries (ARM64 and x86_64).
-$ make push                # Run the push.sh script (for maintainers).
+xmake
 ```
 
-
-## Compiler Flags
+### Run the bundled sample
 
 ```bash
-adanc -f <file.adn> [options]
+xmake run
+./samples/testing
+```
+
+`xmake run` builds the `adan` target and compiles `samples/testing.adn` by default.
+
+## Useful XMake commands
+
+```bash
+$ xmake               # Build the ADAN compiler.
+$ xmake run           # Build and run the default sample.
+$ ./samples/testing   # Run the generated sample executable.
+$ xmake format        # Format source files with clang-format.
+$ xmake install       # Install required system dependencies.
+$ xmake c             # Remove build artifacts.
+$ xmake f -a x64      # Configure a target architecture.
+```
+
+## Compiler flags
+
+```bash
+adan -f <file.adn> [options]
 ```
 
 | Flag | Description |
 |------|-------------|
-| `-f, --file <file>` | Source file to compile (`.adn` or `.adan` extension required) |
-| `-o, --output <path>` | Output path for the linked binary. If `<path>` is a directory, the binary is placed inside it named after the source file |
-| `-r, --rawir` | Stop after emitting LLVM IR (.ll file) |
+| `-f, --file <file>` | Source file to compile (`.adn` or `.adan`) |
+| `-o, --output <path>` | Output path for the linked binary |
+| `-r, --rawir` | Stop after emitting LLVM IR (`.ll`) |
 | `-h, --help` | Show the help message and exit |
 
-### Examples
-
-Compile a source file:
+### Example
 
 ```bash
-adan -f main.adn
+./build/linux/x86_64/release/adan -f main.adn -o main
 ```
 
-Compile and specify an output path:
-
-```bash
-adan -f main.adn -o ./build/myprogram
-```
+If you prefer, you can also use the built compiler binary from the platform-specific `build` directory.
